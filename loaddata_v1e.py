@@ -61,25 +61,11 @@ for i in range(STARTNUM, STARTNUM+SAMPLES):
         
             timeUnix=time.mktime(triggerTime.timetuple())+(triggerTime.microsecond*1e-6)
             xPeakValue=(x[np.where(y==peak)][0]) 
-          
-# =============================================================================
-#             if xPeakValue < minimumValue:
-#                 minimumValue=xPeakValue
-#                 minimumSwitch=1
-#              
-#             elif xPeakValue> maximumValue:
-#                 maximumValue=xPeakValue
-#                 maximumSwitch=1
-# =============================================================================
-            rangeList.append(xPeakValue)
-            
-                
+            rangeList.append(xPeakValue)    
             amplitude=peak-baseline
-            
             
             file1.write("\n "+ fileName.split("/")[-1] + " \t " +str(baseline)+" \t "+str(peak)+" \t "+str(amplitude)+" \t "+str(triggerTime)+" \t "+str(xPeakValue) +" \t "+str(timeUnix))
         
-    #if (minimumSwitch==1) and (maximumSwitch==1):
         
     if len(rangeList)>1:
         minimumValue=min(rangeList)
@@ -90,23 +76,8 @@ for i in range(STARTNUM, STARTNUM+SAMPLES):
 XLIMITMIN=-2e-8
 XLIMITMAX=4e-8
 plt.xlim(XLIMITMIN, XLIMITMAX)
-#plt.axhline(baseline) #outdated
 plt.grid()
 plt.show()
 
 file1.close()
 
-# =============================================================================
-# file1 = open('MyFile.txt', 'r')
-# Lines = file1.readlines()      
-# count = 0
-# for line in Lines:
-#     count += 1
-#     print("Line{}: {}".format(count, line.strip()))
-# =============================================================================
-
-#maximum == right place
-#load in c1 to c4 data and over plot
-
-#why is extra data given
-#do histogram for time difference
